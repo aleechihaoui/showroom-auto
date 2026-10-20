@@ -1,0 +1,26 @@
+<div class="container">
+  <label>Brand</label>
+  <input type="text" #brand (input)="selectAutos(brand.value)">
+  <fa-icon [icon]="faMagnifyingGlass" />
+</div>
+
+<div class="auto-container">
+  @for (auto of selectedAutos; track auto.id) {
+    <div class="auto-card">
+      <img [src]="`images/${auto.photo}`" [alt]="auto.model">
+      <div class="details">
+        <h3>{{auto.brand}} {{auto.model}}</h3>
+        <p>
+          Power : {{auto.power}} <br>
+          Price : {{auto.price}} DNT <br>
+          Only {{auto.availability}} units in stock
+        </p>
+      </div>
+      <div class="see_more">
+        <button (click)="selectCar(auto)">See more...</button>
+      </div>
+    </div>
+  } @empty {
+    <p class="no-result">No car found for "{{searchText}}"</p>
+  }
+</div>

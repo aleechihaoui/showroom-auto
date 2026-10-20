@@ -1,0 +1,10 @@
+.header{
+    padding: 25px 20px;
+    text-align: center;
+    background-color: rgb(72, 72, 72);
+}
+h1{
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+    color: rgb(219, 132, 170);
+}
