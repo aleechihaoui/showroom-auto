@@ -1,0 +1,32 @@
+<!-- page de détails plein écran, façon affiche de nuit -->
+@if (car) {
+  <div class="detail" role="dialog" [attr.aria-label]="car.brand + ' ' + car.model">
+    <header class="detail-top">
+      <button class="back" (click)="close()">
+        <fa-icon [icon]="faArrowLeftLong" /> Showroom._
+      </button>
+      <span class="badge">
+        <img class="logo" [src]="logo(car.brand)" [alt]="car.brand">
+      </span>
+    </header>
+
+    <section class="stage">
+      <h2 class="giant" [style.font-size]="giantSize(car.model)">{{car.model}}</h2>
+      <img class="car" [src]="`images/${car.photo}`" [alt]="car.model">
+    </section>
+
+    <section class="info">
+      <div class="thumb">
+        <img [src]="`images/${car.photo}`" alt="">
+      </div>
+      <div class="text">
+        <ul class="specs">
+          <li><span>Power</span>{{car.power}} CV</li>
+          <li><span>Price</span>{{car.price}} DNT</li>
+          <li><span>In stock</span>{{car.availability}}</li>
+        </ul>
+        <p>{{car.description}}</p>
+      </div>
+    </section>
+  </div>
+}

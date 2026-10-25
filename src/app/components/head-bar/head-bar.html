@@ -1,3 +1,48 @@
-<div class="header">
-  <h1>Welcome to my Showroom!</h1>
-</div>
+<header class="hero">
+  <span class="corner tl"></span>
+  <span class="corner tr"></span>
+  <span class="corner bl"></span>
+  <span class="corner br"></span>
+
+  <nav class="nav">
+    <span class="crest">Showroom</span>
+    <div class="codes">
+      <span class="hash">###</span>
+      <span class="tag">[COLLECTION]<br>[{{today | date: 'yyyy'}}]</span>
+      @if (hasMusic) {
+        <button class="theme-toggle" (click)="toggleMusic()"
+          [attr.aria-label]="playing() ? 'Pause music' : 'Play music'">
+          <fa-icon [icon]="playing() ? faPause : faPlay" />
+        </button>
+      }
+      <button class="theme-toggle" (click)="toggleTheme()"
+        [attr.aria-label]="theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+        <fa-icon [icon]="theme() === 'dark' ? faSun : faMoon" />
+      </button>
+    </div>
+  </nav>
+
+  <div class="dateline">
+    <span>{{today | date: 'MMMM' | uppercase}}//{{today | date: 'dd'}}</span>
+    <span>Date {{today | date: 'dd/MM/yyyy'}}</span>
+  </div>
+
+  <div class="intro">
+    <p class="day">{{today | date: 'dd.MM'}}</p>
+    <hr>
+    <h1>Welcome to my Showroom!</h1>
+    <p class="subtitle">
+      When it comes to exciting performance cars, our fleet never loses. Discover a hand-picked
+      selection of luxury models, from compact executive sedans to iconic off-roaders.
+    </p>
+  </div>
+
+  <div class="stage">
+    <p class="tagline">
+      We don't pray for love, we just pray for cars
+      <span class="tag">— The Weeknd</span>
+    </p>
+    <span class="giant" aria-hidden="true">AUTO</span>
+    <img class="car" src="images/CLASS-C.webp" alt="">
+  </div>
+</header>

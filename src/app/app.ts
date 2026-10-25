@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
+import { CarDetails } from './components/car-details/car-details';
 import { HeadBar } from './components/head-bar/head-bar';
 import { SearchBar } from './components/search-bar/search-bar';
 import { Auto } from './interfaces/auto';
 @Component({
-  imports: [HeadBar, SearchBar],
+  imports: [HeadBar, SearchBar, CarDetails],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -13,9 +14,14 @@ export class App {
   constructor() {
     this.title.set('showroom-auto');
   }
-  selectedCar!:Auto
+  selectedCar: Auto | null = null
   selectCar(auto: Auto) {
     this.selectedCar=auto
+  }
+  //fermer la fiche détaillée (bouton retour du composant car-details ou touche Échap)
+  @HostListener('document:keydown.escape')
+  closeDetails() {
+    this.selectedCar=null
   }
   autoList: Auto[] = [
     {     

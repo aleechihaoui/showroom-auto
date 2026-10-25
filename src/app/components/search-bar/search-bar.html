@@ -1,23 +1,46 @@
-<div class="container">
-  <label>Brand</label>
-  <input type="text" #brand (input)="selectAutos(brand.value)">
-  <fa-icon [icon]="faMagnifyingGlass" />
-</div>
+<section class="toolbar">
+  <div class="heading">
+    <span class="tag">[{{selectedAutos.length}} / {{autos.length}}] models</span>
+    <h2>Models</h2>
+  </div>
+  <div class="container">
+    <label for="brand" class="tag">Brand</label>
+    <div class="field">
+      <input id="brand" type="text" placeholder="Search a brand..." #brand (input)="selectAutos(brand.value)">
+      <fa-icon [icon]="faMagnifyingGlass" />
+    </div>
+    <div class="sort">
+      <span class="tag">Sort</span>
+      <button [class.active]="sortOrder === 'asc'" (click)="sortByPrice('asc')">Price ↑</button>
+      <button [class.active]="sortOrder === 'desc'" (click)="sortByPrice('desc')">Price ↓</button>
+    </div>
+  </div>
+</section>
 
 <div class="auto-container">
-  @for (auto of selectedAutos; track auto.id) {
-    <div class="auto-card">
-      <img [src]="`images/${auto.photo}`" [alt]="auto.model">
+  @for (auto of selectedAutos; track auto.id; let i = $index) {
+    <div class="auto-card" (click)="selectCar(auto)">
+      <div class="card-top">
+        <span class="tag">{{auto.brand}}</span>
+        <span class="tag">#{{(i + 1).toString().padStart(2, '0')}}</span>
+      </div>
+      <div class="picture">
+        <span class="giant" [style.font-size]="giantSize(auto.model)" aria-hidden="true">{{auto.model}}</span>
+        <img [src]="`images/${auto.photo}`" [alt]="auto.model">
+      </div>
       <div class="details">
-        <h3>{{auto.brand}} {{auto.model}}</h3>
-        <p>
-          Power : {{auto.power}} <br>
-          Price : {{auto.price}} DNT <br>
-          Only {{auto.availability}} units in stock
-        </p>
+        <h3>{{auto.model}}</h3>
+        @if (auto.availability < 4) {
+          <span class="low-stock">Limited stock</span>
+        }
+        <ul class="specs">
+          <li><span class="tag">Power</span>[ {{auto.power}} CV ]</li>
+          <li><span class="tag">Price</span>[ {{auto.price}} DNT ]</li>
+          <li><span class="tag">Stock</span>[ {{auto.availability}} ]</li>
+        </ul>
       </div>
       <div class="see_more">
-        <button (click)="selectCar(auto)">See more...</button>
+        <button>See more <fa-icon [icon]="faArrowRight" /></button>
       </div>
     </div>
   } @empty {

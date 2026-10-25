@@ -1,10 +1,166 @@
-.header{
-    padding: 25px 20px;
-    text-align: center;
-    background-color: rgb(72, 72, 72);
+/* bannière façon affiche : ciel couchant, texte géant derrière la voiture */
+.hero{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 48px 7vw 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: var(--sky);
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 24px;
+}
+.crest{
+    font-size: 22px;
+    font-weight: 400;
+}
+.codes{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+.hash{
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+.codes .tag{
+    color: inherit;
+    text-align: right;
+    line-height: 1.3;
+}
+.theme-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background-color: var(--surface);
+    backdrop-filter: blur(6px);
+    color: var(--primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.theme-toggle:hover{
+    background-color: var(--surface-hover);
+}
+.dateline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+}
+.intro{
+    position: relative;
+    z-index: 1;
+    max-width: 540px;
+    margin-top: 3vh;
+}
+.day{
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+}
+hr{
+    width: 64px;
+    margin: 20px 0;
+    border: none;
+    border-top: 1.5px solid currentColor;
+    opacity: 0.6;
 }
 h1{
+    margin: 0 0 20px;
+    font-size: clamp(40px, 5.5vw, 76px);
+    font-weight: 200;
+    line-height: 1.05;
+}
+.subtitle{
     margin: 0;
-    font-family: 'Times New Roman', serif;
-    color: rgb(219, 132, 170);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: justify;
+    opacity: 0.9;
+}
+
+.stage{
+    position: relative;
+    height: clamp(280px, 36vw, 560px);
+    margin-top: auto;
+}
+.tagline{
+    position: absolute;
+    top: -2.5vw;
+    right: 0;
+    z-index: 1;
+    margin: 0;
+    max-width: 60%;
+    font-size: clamp(14px, 1.6vw, 24px);
+    letter-spacing: 0.2em;
+    text-align: right;
+}
+.tagline .tag{
+    display: block;
+    margin-top: 6px;
+    color: inherit;
+    opacity: 0.8;
+}
+/* texte géant en dégradé (sombre en haut, qui s'efface vers le bas) */
+.giant{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(150px, 25vw, 400px);
+    line-height: 1.05;
+    white-space: nowrap;
+    background: linear-gradient(180deg, rgba(10, 12, 14, 0.9) 0%, rgba(110, 114, 118, 0.7) 55%, rgba(110, 114, 118, 0) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    user-select: none;
+}
+.car{
+    position: absolute;
+    bottom: 2vw;
+    left: 50%;
+    width: min(780px, 60vw);
+    transform: translateX(-50%);
+    filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.55));
+}
+
+@media (max-width: 700px){
+    .hero{
+        padding: 32px 16px 0;
+    }
+    .nav{
+        padding: 0;
+    }
+    .corner{
+        display: none;
+    }
+    .tagline{
+        top: -24px;
+        letter-spacing: 0.15em;
+    }
+    .codes .tag, .hash{
+        display: none;
+    }
+    .intro{
+        margin-top: 32px;
+    }
+    .car{
+        width: 92vw;
+    }
 }
